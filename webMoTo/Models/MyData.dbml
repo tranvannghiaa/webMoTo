@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebMoTo" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-O9BQMGQM\TVN;Initial Catalog=WebMoTo;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebMoToConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.LoaiMoTo" Member="LoaiMoTos">
+    <Type Name="LoaiMoTo">
+      <Column Name="LoaiId" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="LoaiMoTo_MoTo" Member="MoTos" ThisKey="LoaiId" OtherKey="LoaiId" Type="MoTo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MoTo" Member="MoTos">
+    <Type Name="MoTo">
+      <Column Name="Id" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Hinh" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SLT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NSX" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="Gia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DTXiLanh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoaiId" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="LoaiMoTo_MoTo" Member="LoaiMoTo" ThisKey="LoaiId" OtherKey="LoaiId" Type="LoaiMoTo" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webMoTo", "webMoTo\webMoTo.csproj", "{D2336573-A0B0-4751-A8AF-4A5D5D9EA502}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2336573-A0B0-4751-A8AF-4A5D5D9EA502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2336573-A0B0-4751-A8AF-4A5D5D9EA502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2336573-A0B0-4751-A8AF-4A5D5D9EA502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2336573-A0B0-4751-A8AF-4A5D5D9EA502}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5023AA5B-9FA6-4498-8C89-AD96EB0034F4}
+	EndGlobalSection
+EndGlobal
