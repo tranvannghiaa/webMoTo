@@ -2,23 +2,36 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MyData">
   <DataContextMoniker Name="/MyDataDataContext" />
   <nestedChildShapes>
-    <classShape Id="22649ced-1cce-4498-82e9-fea811fed3f2" absoluteBounds="5.625, 1, 2, 1.1939925130208333">
+    <classShape Id="5675ecc3-1442-4121-a313-b71ffe666cd4" absoluteBounds="0.75, 2.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/MyDataDataContext/HangXe" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cc03d775-27b0-44d1-8c54-c0bdb43b4feb" absoluteBounds="0.765, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d6fb8eab-12e9-4fe1-83b3-b0e64c3c6f6b" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
       <DataClassMoniker Name="/MyDataDataContext/LoaiMoTo" />
       <nestedChildShapes>
-        <elementListCompartment Id="35321030-2222-430c-b065-9aa6817835ca" absoluteBounds="5.64, 1.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3d556213-e7d8-435a-a1cd-36d0acabdab0" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1c735cca-786b-4da5-a9a8-6290a162f5c1" absoluteBounds="8.5, 1.5, 2, 2.5401025390625">
+    <classShape Id="67bef18c-f897-473d-a580-15c771514aee" absoluteBounds="3.5, 2, 2, 2.732403971354167">
       <DataClassMoniker Name="/MyDataDataContext/MoTo" />
       <nestedChildShapes>
-        <elementListCompartment Id="429f90b6-3150-4f35-a00e-29ba94589b04" absoluteBounds="8.515, 1.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="54069333-7f92-4f6c-b822-8b30bb5e09a0" absoluteBounds="3.515, 2.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.625 : 1.84699625651042); (8.5 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.34699625651042); (3.5 : 3.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MyDataDataContext/HangXe/HangXe_MoTo" />
+      <nodes>
+        <classShapeMoniker Id="5675ecc3-1442-4121-a313-b71ffe666cd4" />
+        <classShapeMoniker Id="67bef18c-f897-473d-a580-15c771514aee" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.34699625651042); (4.5 : 1.34699625651042); (4.5 : 2)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MyDataDataContext/LoaiMoTo/LoaiMoTo_MoTo" />
       <nodes>
-        <classShapeMoniker Id="22649ced-1cce-4498-82e9-fea811fed3f2" />
-        <classShapeMoniker Id="1c735cca-786b-4da5-a9a8-6290a162f5c1" />
+        <classShapeMoniker Id="d6fb8eab-12e9-4fe1-83b3-b0e64c3c6f6b" />
+        <classShapeMoniker Id="67bef18c-f897-473d-a580-15c771514aee" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

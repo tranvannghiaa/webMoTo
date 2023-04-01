@@ -30,6 +30,9 @@ namespace webMoTo.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertHangXe(HangXe instance);
+    partial void UpdateHangXe(HangXe instance);
+    partial void DeleteHangXe(HangXe instance);
     partial void InsertLoaiMoTo(LoaiMoTo instance);
     partial void UpdateLoaiMoTo(LoaiMoTo instance);
     partial void DeleteLoaiMoTo(LoaiMoTo instance);
@@ -37,12 +40,6 @@ namespace webMoTo.Models
     partial void UpdateMoTo(MoTo instance);
     partial void DeleteMoTo(MoTo instance);
     #endregion
-		
-		public MyDataDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebMoToConnectionString"].ConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public MyDataDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -67,6 +64,19 @@ namespace webMoTo.Models
 		{
 			OnCreated();
 		}
+
+        public MyDataDataContext():
+            base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebMoToConnectionString"].ConnectionString, mappingSource)
+        {
+        }
+
+        public System.Data.Linq.Table<HangXe> HangXes
+		{
+			get
+			{
+				return this.GetTable<HangXe>();
+			}
+		}
 		
 		public System.Data.Linq.Table<LoaiMoTo> LoaiMoTos
 		{
@@ -82,6 +92,120 @@ namespace webMoTo.Models
 			{
 				return this.GetTable<MoTo>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HangXe")]
+	public partial class HangXe : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _maHang;
+		
+		private string _tenHang;
+		
+		private EntitySet<MoTo> _MoTos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnmaHangChanging(string value);
+    partial void OnmaHangChanged();
+    partial void OntenHangChanging(string value);
+    partial void OntenHangChanged();
+    #endregion
+		
+		public HangXe()
+		{
+			this._MoTos = new EntitySet<MoTo>(new Action<MoTo>(this.attach_MoTos), new Action<MoTo>(this.detach_MoTos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_maHang", DbType="NChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string maHang
+		{
+			get
+			{
+				return this._maHang;
+			}
+			set
+			{
+				if ((this._maHang != value))
+				{
+					this.OnmaHangChanging(value);
+					this.SendPropertyChanging();
+					this._maHang = value;
+					this.SendPropertyChanged("maHang");
+					this.OnmaHangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tenHang", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string tenHang
+		{
+			get
+			{
+				return this._tenHang;
+			}
+			set
+			{
+				if ((this._tenHang != value))
+				{
+					this.OntenHangChanging(value);
+					this.SendPropertyChanging();
+					this._tenHang = value;
+					this.SendPropertyChanged("tenHang");
+					this.OntenHangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HangXe_MoTo", Storage="_MoTos", ThisKey="maHang", OtherKey="maHang")]
+		public EntitySet<MoTo> MoTos
+		{
+			get
+			{
+				return this._MoTos;
+			}
+			set
+			{
+				this._MoTos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_MoTos(MoTo entity)
+		{
+			this.SendPropertyChanging();
+			entity.HangXe = this;
+		}
+		
+		private void detach_MoTos(MoTo entity)
+		{
+			this.SendPropertyChanging();
+			entity.HangXe = null;
 		}
 	}
 	
@@ -217,11 +341,15 @@ namespace webMoTo.Models
 		
 		private System.Nullable<int> _Gia;
 		
-		private System.Nullable<System.DateTime> _NgayNhap;
+		private System.Nullable<System.DateTime> _NgayDangKy;
 		
 		private System.Nullable<int> _DTXiLanh;
 		
 		private string _LoaiId;
+		
+		private string _maHang;
+		
+		private EntityRef<HangXe> _HangXe;
 		
 		private EntityRef<LoaiMoTo> _LoaiMoTo;
 		
@@ -241,16 +369,19 @@ namespace webMoTo.Models
     partial void OnNSXChanged();
     partial void OnGiaChanging(System.Nullable<int> value);
     partial void OnGiaChanged();
-    partial void OnNgayNhapChanging(System.Nullable<System.DateTime> value);
-    partial void OnNgayNhapChanged();
+    partial void OnNgayDangKyChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayDangKyChanged();
     partial void OnDTXiLanhChanging(System.Nullable<int> value);
     partial void OnDTXiLanhChanged();
     partial void OnLoaiIdChanging(string value);
     partial void OnLoaiIdChanged();
+    partial void OnmaHangChanging(string value);
+    partial void OnmaHangChanged();
     #endregion
 		
 		public MoTo()
 		{
+			this._HangXe = default(EntityRef<HangXe>);
 			this._LoaiMoTo = default(EntityRef<LoaiMoTo>);
 			OnCreated();
 		}
@@ -375,22 +506,22 @@ namespace webMoTo.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayNhap", DbType="DateTime")]
-		public System.Nullable<System.DateTime> NgayNhap
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDangKy", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayDangKy
 		{
 			get
 			{
-				return this._NgayNhap;
+				return this._NgayDangKy;
 			}
 			set
 			{
-				if ((this._NgayNhap != value))
+				if ((this._NgayDangKy != value))
 				{
-					this.OnNgayNhapChanging(value);
+					this.OnNgayDangKyChanging(value);
 					this.SendPropertyChanging();
-					this._NgayNhap = value;
-					this.SendPropertyChanged("NgayNhap");
-					this.OnNgayNhapChanged();
+					this._NgayDangKy = value;
+					this.SendPropertyChanged("NgayDangKy");
+					this.OnNgayDangKyChanged();
 				}
 			}
 		}
@@ -435,6 +566,64 @@ namespace webMoTo.Models
 					this._LoaiId = value;
 					this.SendPropertyChanged("LoaiId");
 					this.OnLoaiIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_maHang", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string maHang
+		{
+			get
+			{
+				return this._maHang;
+			}
+			set
+			{
+				if ((this._maHang != value))
+				{
+					if (this._HangXe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnmaHangChanging(value);
+					this.SendPropertyChanging();
+					this._maHang = value;
+					this.SendPropertyChanged("maHang");
+					this.OnmaHangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HangXe_MoTo", Storage="_HangXe", ThisKey="maHang", OtherKey="maHang", IsForeignKey=true)]
+		public HangXe HangXe
+		{
+			get
+			{
+				return this._HangXe.Entity;
+			}
+			set
+			{
+				HangXe previousValue = this._HangXe.Entity;
+				if (((previousValue != value) 
+							|| (this._HangXe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HangXe.Entity = null;
+						previousValue.MoTos.Remove(this);
+					}
+					this._HangXe.Entity = value;
+					if ((value != null))
+					{
+						value.MoTos.Add(this);
+						this._maHang = value.maHang;
+					}
+					else
+					{
+						this._maHang = default(string);
+					}
+					this.SendPropertyChanged("HangXe");
 				}
 			}
 		}
